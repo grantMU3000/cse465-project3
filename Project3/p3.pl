@@ -1,5 +1,5 @@
 % p3.pl
-% Jack Hunter: max_two/3, max_lst/2, and their example tests.
+% Jack Hunter: max_two/3, max_lst/2, count_occurrences/3, and their example tests.
 
 % ------------------- PART ONE ---------------------
 % #1 (Undergraduate/Graduate) (5/5 pts)
@@ -36,6 +36,17 @@ max_lst([Head, Next|Tail], Max) :-
 
 % count_occurrences([1, 2, 3, 2, 2, 4], 2, Count). -> Count = 3
 % count_occurrences([5, 5, 5], 5, Count). -> Count = 3
+
+% Add one for a match and keep the tail count otherwise.
+count_occurrences([], _, 0).
+count_occurrences([Head|Tail], Num, Count) :-
+    Head =:= Num,
+    count_occurrences(Tail, Num, RestCount),
+    Count is RestCount + 1.
+count_occurrences([Head|Tail], Num, Count) :-
+    Head =\= Num,
+    count_occurrences(Tail, Num, Count).
+
 % ------------------------------------------------
 % #4 (Undergraduate/Graduate) (5/5 pts)
 % Determine the summation of a list of integer numbers.
@@ -150,3 +161,4 @@ deg2rad(Deg, Rad) :-
 
 % ?- max_two(1, 12, 12).
 % ?- max_lst([1, 13, 2], 13).
+% ?- count_occurrences([1, 2, 3, 2, 2, 4], 2, 3).
