@@ -55,6 +55,11 @@ count_occurrences([Head|Tail], Num, Count) :-
 
 % sum_lst([1, 2, 3, 4], Sum). -> Sum = 10
 % sum_lst([10, 10], Sum). -> Sum = 20
+
+sum_list([], 0).
+sum_list([H|T], Sum) :-
+    sum_lst(T, Rest),
+    Sum is H + Rest.
 % ------------------------------------------------
 % #5 (Undergraduate/Graduate) (5/5 pts)
 % Using the sum_lst predicate from the previous problem,
