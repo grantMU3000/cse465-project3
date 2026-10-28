@@ -1,5 +1,6 @@
 % p3.pl
-% Jack Hunter: max_two/3, max_lst/2, count_occurrences/3, and their example tests.
+% Jack Hunter: max_two/3, max_lst/2, count_occurrences/3,
+% reverse_unique/2, and their example tests.
 
 % ------------------- PART ONE ---------------------
 % #1 (Undergraduate/Graduate) (5/5 pts)
@@ -72,6 +73,15 @@ count_occurrences([Head|Tail], Num, Count) :-
 
 % reverse_unique([4, 0, -4, 6, 0], RevLst). -> RevLst = [0, 6, -4, 4]
 % reverse_unique([6, 18, 41, 6, 18, 10, 6], RevLst). -> RevLst = [6, 10, 18, 41]
+
+% Keep only the last occurrence of each value, in reverse order.
+reverse_unique([], []).
+reverse_unique([Head|Tail], RevLst) :-
+    count_occurrences(Tail, Head, Count),
+    reverse_unique(Tail, RevTail),
+    (Count =:= 0 -> append(RevTail, [Head], RevLst)
+    ; RevLst = RevTail).
+
 % ------------------------------------------------
 % #7 (Undergraduate/Graduate) (10/5 pts)
 % Return a list of numbers that have an even number of digits.
@@ -162,3 +172,4 @@ deg2rad(Deg, Rad) :-
 % ?- max_two(1, 12, 12).
 % ?- max_lst([1, 13, 2], 13).
 % ?- count_occurrences([1, 2, 3, 2, 2, 4], 2, 3).
+% ?- reverse_unique([4, 0, -4, 6, 0], [0, 6, -4, 4]).
