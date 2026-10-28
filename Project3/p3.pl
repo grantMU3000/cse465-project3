@@ -1,5 +1,5 @@
 % p3.pl
-% Jack Hunter: max_two/3 and its example test.
+% Jack Hunter: max_two/3, max_lst/2, and their example tests.
 
 % ------------------- PART ONE ---------------------
 % #1 (Undergraduate/Graduate) (5/5 pts)
@@ -22,6 +22,13 @@ max_two(A, B, B) :- A < B.
 
 % max_lst([1, 2, 3, 4], Max). -> Max = 4
 % max_lst([1, 13, 2], Max). -> Max = 13
+
+% Compare the head with the maximum of the remaining list.
+max_lst([Value], Value).
+max_lst([Head, Next|Tail], Max) :-
+    max_lst([Next|Tail], TailMax),
+    max_two(Head, TailMax, Max).
+
 % ------------------------------------------------
 % #3 (Undergraduate/Graduate) (5/5 pts)
 % Count how many times a number appears in a list of integers.
@@ -142,3 +149,4 @@ deg2rad(Deg, Rad) :-
     Rad is Deg * pi / 180.
 
 % ?- max_two(1, 12, 12).
+% ?- max_lst([1, 13, 2], 13).
