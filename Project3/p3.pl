@@ -71,6 +71,19 @@ sum_lst([H|T], Sum) :-
 % partitionable([1, 2, 3, 4, 10]). -> true. because of [1, 2, 3, 4] and [10]
 % partitionable([2, 1, 1]). -> true. because of [2] and [1, 2]
 
+partitionable(Lst) :-
+    sum_lst(Lst, Total),
+    Total mod 2=:= 0,
+    Half is Total // 2,
+    subset_sum(Lst, Sub),
+    sum_lst(Sub, Half), !.
+
+% Helper to get any subset of the list (Keep or skip each element)
+% AI-assisted for this segment
+subset_sum([], []).
+subset_sum([H|T], [H|Sub]) :- subset_sum(T, Sub).
+subset_sum([_|T], Sub) :- subset_sum(T, Sub).
+
 
 % ------------------------------------------------
 % #6 (Undergraduate/Graduate) (5/5 pts)
