@@ -1,6 +1,6 @@
 % p3.pl
 % Jack Hunter: max_two/3, max_lst/2, count_occurrences/3,
-% reverse_unique/2, and their example tests.
+% reverse_unique/2, getCommon/3, and their example tests.
 
 % ------------------- PART ONE ---------------------
 % #1 (Undergraduate/Graduate) (5/5 pts)
@@ -142,6 +142,16 @@ reverse_unique([Head|Tail], RevLst) :-
 % inton','Hudson','Akron','Fowler','Hartford','Niles','Warren','Du
 % ndee','Marysville','Ray','Franklin','Mason','Lowell','Newport',
 % 'Waterford', 'Sterling', 'Portage', 'Wayne', 'Grand Rapids', 'Weston']
+
+% Collect shared place names and remove duplicates.
+getCommon(State1, State2, Places) :-
+    State1 \= State2,
+    findall(Place,
+        (location(_, Place, State1, _, _, _),
+         location(_, Place, State2, _, _, _)),
+        Matches),
+    sort(Matches, Places).
+
 % ------------------------------------------------
 % #10 (Undergrad/Grad) (20/15 pts)
 % Determine the place that is geographically closest to a given place 
@@ -173,3 +183,4 @@ deg2rad(Deg, Rad) :-
 % ?- max_lst([1, 13, 2], 13).
 % ?- count_occurrences([1, 2, 3, 2, 2, 4], 2, 3).
 % ?- reverse_unique([4, 0, -4, 6, 0], [0, 6, -4, 4]).
+% ?- getCommon('OH', 'MI', Places), length(Places, 131).
