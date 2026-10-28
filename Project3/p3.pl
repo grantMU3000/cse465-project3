@@ -110,6 +110,19 @@ reverse_unique([Head|Tail], RevLst) :-
 % collectEvenDigitCount([3, 12, 9999, 123], NewLst). -> NewLst = [12, 9999] 
 % collectEvenDigitCount([22, 3333, 0, 444444], NewLst). -> NewLst = [22, 3333, 444444] 
 
+num_digits(N, D) :-
+    A is abs(N),
+    number_codes(A, Codes),
+    length(Codes, D).
+
+collectEvenDigitCount([], []).
+collectEvenDigitCount([H|T], [H|R]) :-
+    num_digits(H, D),
+    D mod 2 =:= 0, !,
+    collectEvenDigitCount(T, R).
+collectEvenDigitCount([_|T], R) :-
+    collectEvenDigitCount(T, R).
+
 % ------------------- PART TWO ---------------------
 % Put the 'zipcodes.pl' file, in the same folder as this file.
 % This file contains facts about the US zipcodes in the following format:
