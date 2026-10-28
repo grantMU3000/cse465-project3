@@ -1,5 +1,5 @@
 % p3.pl
-% *-> ADD ALL RESPONSIBILITIES IN DETAIL HERE <-*
+% Jack Hunter: max_two/3 and its example test.
 
 % ------------------- PART ONE ---------------------
 % #1 (Undergraduate/Graduate) (5/5 pts)
@@ -8,6 +8,11 @@
 
 % max_two(1, 12, M). -> M = 12
 % max_two(11232, 92674, M). -> M = 92674
+
+% Equal inputs use the first rule.
+max_two(A, B, A) :- A >= B.
+max_two(A, B, B) :- A < B.
+
 % ------------------------------------------------
 % #2 (Undergraduate/Graduate) (5/5 pts)
 % Using the max_two predicate from the previous problem,
@@ -135,3 +140,5 @@ distance_km(Lat1, Lon1, Lat2, Lon2, D) :-
 
 deg2rad(Deg, Rad) :-
     Rad is Deg * pi / 180.
+
+% ?- max_two(1, 12, 12).
