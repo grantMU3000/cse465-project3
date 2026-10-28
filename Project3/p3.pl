@@ -56,8 +56,8 @@ count_occurrences([Head|Tail], Num, Count) :-
 % sum_lst([1, 2, 3, 4], Sum). -> Sum = 10
 % sum_lst([10, 10], Sum). -> Sum = 20
 
-sum_list([], 0).
-sum_list([H|T], Sum) :-
+sum_lst([], 0).
+sum_lst([H|T], Sum) :-
     sum_lst(T, Rest),
     Sum is H + Rest.
 % ------------------------------------------------
@@ -70,6 +70,8 @@ sum_list([H|T], Sum) :-
  
 % partitionable([1, 2, 3, 4, 10]). -> true. because of [1, 2, 3, 4] and [10]
 % partitionable([2, 1, 1]). -> true. because of [2] and [1, 2]
+
+
 % ------------------------------------------------
 % #6 (Undergraduate/Graduate) (5/5 pts)
 % Using the count_occurrences predicate from Problem 3,
